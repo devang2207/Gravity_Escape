@@ -20,9 +20,5 @@ public class MonoClass : MonoBehaviour
         currentState = newState;
         currentState.StartState();
     }
-    public void Fly()
-    {
-
-    }
 }
 

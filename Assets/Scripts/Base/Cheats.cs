@@ -22,7 +22,7 @@ public class Cheats : MonoBehaviour
     void GoTo()
     {
         //Rocketcollider.enabled = collisionEnable;
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.C)) 
         {
             transform.position = GoToPos.position;
            // collisionEnable = !collisionEnable;

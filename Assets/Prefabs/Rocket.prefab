@@ -1659,7 +1659,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4545730075028336663, guid: eafb5fe28c005164a92ca42f3f7532a7, type: 3}
       propertyPath: InitialModule.maxNumParticles
-      value: 256
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 4545730075028336663, guid: eafb5fe28c005164a92ca42f3f7532a7, type: 3}
       propertyPath: InitialModule.startSize.scalar
@@ -1880,7 +1880,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4545730075028336663, guid: eafb5fe28c005164a92ca42f3f7532a7, type: 3}
       propertyPath: InitialModule.maxNumParticles
-      value: 256
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 4545730075028336663, guid: eafb5fe28c005164a92ca42f3f7532a7, type: 3}
       propertyPath: InitialModule.startSize.scalar
@@ -2003,7 +2003,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4545730075028336663, guid: eafb5fe28c005164a92ca42f3f7532a7, type: 3}
       propertyPath: InitialModule.maxNumParticles
-      value: 256
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 4545730075028336663, guid: eafb5fe28c005164a92ca42f3f7532a7, type: 3}
       propertyPath: InitialModule.startSize.scalar

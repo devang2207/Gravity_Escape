@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 [System.Serializable]
@@ -10,7 +11,7 @@ public class OnDead
 
     //reference to state machine
     StateMachine SM_Ref;
-    bool Done = false;
+    bool Dead = false;
 
     [Header("Audio")]
     [SerializeField] AudioSource DeadAudio;
@@ -21,8 +22,8 @@ public class OnDead
     }
     internal IEnumerator DeadCoroutine()
     {
-        if (Done) { yield break;}
-        Done = true;
+        if (Dead) { yield break;}
+        Dead = true;
         SM_Ref.midParticleSys.Stop();                           //stopping particle systems
         SM_Ref.rightParticleSys.Stop();
         SM_Ref.leftParticleSys.Stop();
@@ -35,8 +36,14 @@ public class OnDead
         {
             DeadAudio.Play();
         }
+
         yield return new WaitForSeconds(1);
-        SM_Ref.LevelTransition.SetBool("DoTransition",true);
+
+        if(SM_Ref.LevelTransition != null)
+        {
+            SM_Ref.LevelTransition.SetBool("DoTransition",true);
+        }else { Debug.LogWarning("Level Transition is not assigned"); }
+
         yield return new WaitForSeconds(3.5f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         yield return null; 

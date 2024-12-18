@@ -557,7 +557,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7135000890202155924}
   - component: {fileID: 8908160768431363321}
-  - component: {fileID: 4306398232347962951}
   m_Layer: 0
   m_Name: CloudTransitionEntry
   m_TagString: Untagged
@@ -614,19 +613,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &4306398232347962951
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3985129474762214893}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5cf8fd3bd04e094c8ea8ae0f99fd13b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parameterName: DoTransition
 --- !u!1 &4470635996624315172
 GameObject:
   m_ObjectHideFlags: 0

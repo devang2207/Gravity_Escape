@@ -16,11 +16,16 @@ public class FuelCalculator
     }
     internal void UpdateState()
     {
+        if (InputHandler.Instance == null) { Debug.LogWarning("INPUT Handler Aint there"); return; }
         if (InputHandler.Instance.Thrust)
         {
             currentFuel -= BurnRate * Time.deltaTime;
         }
-        image.fillAmount = currentFuel / fuelCapacity;
+        if(image != null)
+        {
+            image.fillAmount = currentFuel / fuelCapacity;
+        }
+        else { Debug.LogWarning("FUELBAR IMAGE is not there"); }
         if(currentFuel <= 0)
         {
             SM_Ref.RocketThrust = 0;
