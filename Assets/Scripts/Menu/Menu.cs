@@ -21,6 +21,10 @@ public class Menu : MonoBehaviour
         }
 
     }
+    private void Start()
+    {
+        
+    }
     // Update is called once per frame
     void Update()
     {
@@ -48,8 +52,8 @@ public class Menu : MonoBehaviour
     }
     public void OpenLevel(int levelId)
     {
-        QualitySettings.vSyncCount = 0; // Disable vSync
-        Application.targetFrameRate = 60; // Set target frame rate to 60 FPS
+        //QualitySettings.vSyncCount = 0; // Disable vSync
+        //Application.targetFrameRate = 60; // Set target frame rate to 60 FPS
         SceneManager.LoadScene("Level " + levelId);
     }
 }

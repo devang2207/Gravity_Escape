@@ -98,15 +98,26 @@ public class StateMachine : MonoBehaviour
     }
     internal void LevelChange(int buildIndex)
     {
-        if (SceneManager.loadedSceneCount == SceneManager.sceneCount)
+        int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + buildIndex;
+
+        int maxUnlockedLevels = PlayerPrefs.GetInt("UnlockedLevel");
+        if(nextSceneIndex > maxUnlockedLevels)
         {
+            PlayerPrefs.SetInt("UnlockedLevel", nextSceneIndex);
+        }
+        // Check if the next scene index is within the valid range
+        if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
+        {
+            // Load the next scene if it exists
+            SceneManager.LoadScene(nextSceneIndex);
+        }
+        else
+        {
+            // If no next scene exists (it's the last scene), reload the current scene
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
-        else if(SceneManager.loadedSceneCount < SceneManager.sceneCount)
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+buildIndex);
-        }
     }
+
     internal bool SafeToLand()
     {
         Rigidbody rb = GetComponent<Rigidbody>();

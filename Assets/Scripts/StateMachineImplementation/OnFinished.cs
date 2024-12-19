@@ -13,6 +13,7 @@ public class OnFinished
     }
     internal IEnumerator FinishedCoroutine()
     {
+        //if (SM_Ref.LevelTransition == null) { Debug.LogWarning("LevelTransition is not assigned"); yield break; }
         if (Done) { yield break; }
         Done = true;
 
@@ -21,7 +22,8 @@ public class OnFinished
             finishedAudio.Play();
         }
         SM_Ref.Create(FinishedParticleEffect,SM_Ref.transform); //particle sys 
-        SM_Ref.LevelTransition.SetBool("DoTransition",true);//level transition anim
+
+       // SM_Ref.LevelTransition.SetBool("DoTransition",true);//level transition anim
         yield return new WaitForSeconds(3.5f);// delay 
         SM_Ref.LevelChange(1);//level change
         yield return new WaitForSeconds(2);
