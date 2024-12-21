@@ -9,6 +9,7 @@ TagManager:
   - Button
   - Bullet
   - PlayerBody
+  - Gem
   layers:
   - Default
   - TransparentFX

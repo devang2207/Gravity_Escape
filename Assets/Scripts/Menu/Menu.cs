@@ -21,15 +21,6 @@ public class Menu : MonoBehaviour
         }
 
     }
-    private void Start()
-    {
-        
-    }
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
     public void PlayGame()
     {
         SceneManager.LoadScene(1); 
@@ -40,7 +31,7 @@ public class Menu : MonoBehaviour
         Application.Quit();
 
     }
-    public void Settings()
+    public void OpenSettings()
     {
 
     }
