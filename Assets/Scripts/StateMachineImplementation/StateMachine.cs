@@ -101,9 +101,9 @@ public class StateMachine : MonoBehaviour
         int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + buildIndex;
 
         int maxUnlockedLevels = PlayerPrefs.GetInt("UnlockedLevel");
-        if(nextSceneIndex > maxUnlockedLevels)
+        if (nextSceneIndex < SceneManager.sceneCountInBuildSettings && nextSceneIndex > maxUnlockedLevels)
         {
-            PlayerPrefs.SetInt("UnlockedLevel", nextSceneIndex);
+                PlayerPrefs.SetInt("UnlockedLevel", nextSceneIndex);
         }
         // Check if the next scene index is within the valid range
         if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
