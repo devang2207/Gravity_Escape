@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4056103846094822151}
   - component: {fileID: 358765745987408306}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: StartPad
   m_TagString: Start
   m_Icon: {fileID: 0}
@@ -66,7 +66,7 @@ GameObject:
   - component: {fileID: 2169008350450264618}
   - component: {fileID: 5968919580725609547}
   - component: {fileID: 3937236911866588184}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Box_down
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -149,7 +149,7 @@ GameObject:
   - component: {fileID: 8571859046833258403}
   - component: {fileID: 745675730474055571}
   - component: {fileID: 1460130160325972585}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Box_up
   m_TagString: Untagged
   m_Icon: {fileID: 0}

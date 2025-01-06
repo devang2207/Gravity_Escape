@@ -21,6 +21,7 @@ public class OnDead
     }
     internal IEnumerator DeadCoroutine()
     {
+        //stop particle sys
         if (Dead) { yield break;}
         Dead = true;
         SM_Ref.midParticleSys.Stop();                           //stopping particle systems
@@ -29,8 +30,10 @@ public class OnDead
 
         Transform firstChild = SM_Ref.transform.GetChild(0);     
         firstChild.gameObject.SetActive(false);                 //disabling PlayerBody
+
         SM_Ref.Create(DestroyedRocket,SM_Ref.transform);        //SPAWN Destroyed rocket
         SM_Ref.Create(DeadParticle,SM_Ref.transform);           //destroyed particle effect
+
         if (!DeadAudio.isPlaying)                               //play destroy sfx
         {
             DeadAudio.Play();
@@ -38,13 +41,15 @@ public class OnDead
 
         yield return new WaitForSeconds(1);
 
+        //play cloud animation 
         if(SM_Ref.LevelTransition != null)
         {
             SM_Ref.LevelTransition.SetBool("DoTransition",true);
         }else { Debug.LogWarning("Level Transition is not assigned"); }
 
+        //enable dead screen
         yield return new WaitForSeconds(3.5f);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SM_Ref.gameOverGO.SetActive(true);
         yield return null; 
     }
 }

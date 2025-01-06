@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1094828393128773193}
   - component: {fileID: 7501518422914306742}
   - component: {fileID: 5336126150054014192}
+  - component: {fileID: 8711814389498803103}
   m_Layer: 0
   m_Name: Gem
   m_TagString: Gem
@@ -28,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 2897402839678447808}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 3.49, y: 5.424, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -105,3 +106,23 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.3966622, y: 2.2793622, z: 2.1000001}
   m_Center: {x: -0.022504508, y: 0.12031922, z: -0.19482045}
+--- !u!114 &8711814389498803103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2897402839678447808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b5b2a319824e1546ae8444c697cd9b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minRotationSpeed: 150
+  maxRotationSpeed: 300
+  changeInterval: 2
+  player:
+    serializedVersion: 2
+    m_Bits: 128
+  moveSpeed: 3
+  attractionRange: 1.5
