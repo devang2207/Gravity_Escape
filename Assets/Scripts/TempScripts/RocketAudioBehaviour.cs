@@ -4,42 +4,64 @@ using UnityEngine;
 
 public class RocketAudioBehaviour : MonoBehaviour
 {
-     AudioSource thrustAudio;
-    [SerializeField] AudioClip myaudio;
-    // Start is called before the first frame update
-    void Start()
-    {
-        thrustAudio = GetComponent<AudioSource>();
-    }
+    private AudioSource thrustAudioSource; 
+    private AudioSource rotationAudioSource; 
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        DefaultAudio();
-        if (Input.GetKey(KeyCode.Space))
+        AudioSource[] audioSources = GetComponentsInChildren<AudioSource>();
+        if (audioSources.Length >= 2)
         {
-            PlayAudio(myaudio);
-        }
-    }
+            thrustAudioSource = audioSources[0];
+            rotationAudioSource = audioSources[1];
 
-    private void DefaultAudio()
-    {
-        if (Input.GetKey(KeyCode.W))
-        {
-            // audio.PlayOneShot(myaudio);
-            if (!thrustAudio.isPlaying)
-            {
-                thrustAudio.Play();
-            }
-
+            // Ensure AudioSources are set to loop
+            thrustAudioSource.loop = true;
+            rotationAudioSource.loop = true;
         }
         else
         {
-            thrustAudio.Pause();
+            Debug.LogError("RocketAudioBehaviour: Not enough AudioSource components found in children.");
         }
     }
-    void PlayAudio(AudioClip audio)
+
+    private void Update()
     {
-        thrustAudio.PlayOneShot(audio);
+        if (thrustAudioSource != null && rotationAudioSource != null)
+        {
+            HandleThrustAudio();
+            HandleRotationAudio();
+        }
+        else { Debug.LogWarning("thrust audio or rotation audio source are missing"); }
+    }
+
+    private void HandleThrustAudio()
+    {
+        if (InputHandler.Instance.Thrust)
+        {
+            if (!thrustAudioSource.isPlaying)
+            {
+                thrustAudioSource.Play();
+            }
+        }
+        else
+        {
+            thrustAudioSource.Pause();
+        }
+    }
+
+    private void HandleRotationAudio()
+    {
+        if (InputHandler.Instance.RotateLeft || InputHandler.Instance.RotateRight)
+        {
+            if (!rotationAudioSource.isPlaying)
+            {
+                rotationAudioSource.Play();
+            }
+        }
+        else
+        {
+            rotationAudioSource.Pause();
+        }
     }
 }
