@@ -61,6 +61,7 @@ public class OnFinished
         switch (SM_Ref.gemCount)
         {
             case 0:
+                break;
                 case 1:
                 SM_Ref.starAnimator.SetTrigger("One");
                 break;
