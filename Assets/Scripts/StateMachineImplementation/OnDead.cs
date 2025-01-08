@@ -34,9 +34,12 @@ public class OnDead
         SM_Ref.Create(DestroyedRocket,SM_Ref.transform);        //SPAWN Destroyed rocket
         SM_Ref.Create(DeadParticle,SM_Ref.transform);           //destroyed particle effect
 
-        if (!DeadAudio.isPlaying)                               //play destroy sfx
+        if (AudioManager.Instance != null)
         {
-            DeadAudio.Play();
+            if (!AudioManager.Instance.sfxSource.isPlaying)//audio
+            {
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.deathClip);
+            }
         }
 
         yield return new WaitForSeconds(1);
@@ -47,9 +50,9 @@ public class OnDead
             SM_Ref.LevelTransition.SetBool("DoTransition",true);
         }else { Debug.LogWarning("Level Transition is not assigned"); }
 
-        //enable dead screen
+        
         yield return new WaitForSeconds(3.5f);
-        SM_Ref.gameOverGO.SetActive(true);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         yield return null; 
     }
 }

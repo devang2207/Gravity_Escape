@@ -8,8 +8,8 @@ public class AudioManager : MonoBehaviour
     public static AudioManager Instance { get; private set; }
 
     [Header("Audio Sources")]
-    [SerializeField] private AudioSource musicSource; // Handles background music
-    [SerializeField] private AudioSource sfxSource;   // Handles sound effects
+    public AudioSource musicSource; // Handles background music
+    public AudioSource sfxSource;   // Handles sound effects
 
     [Header("Default Music Clip")]
     [SerializeField] private AudioClip musicClip;
@@ -19,6 +19,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip transitionClip;
     public AudioClip levelFinishedClip;
     public AudioClip onClickResponseClip;
+    public AudioClip gemAudioClip;
 
     private void Awake()
     {
@@ -82,5 +83,9 @@ public class AudioManager : MonoBehaviour
         {
             Debug.LogWarning("AudioManager: SFX source or clip is null.");
         }
+    }
+    public void PlayButtonSFX()
+    {
+        sfxSource.PlayOneShot(onClickResponseClip);
     }
 }

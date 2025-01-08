@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 public class StateMachine : MonoBehaviour
@@ -13,6 +14,7 @@ public class StateMachine : MonoBehaviour
     [SerializeField] internal ParticleSystem midParticleSys;
     [SerializeField] internal ParticleSystem rightParticleSys;
     [SerializeField] internal ParticleSystem leftParticleSys;
+    [SerializeField] ParticleSystem GemCollectionParticle;
     internal Transform GroundCheckPos;
 
 
@@ -30,7 +32,7 @@ public class StateMachine : MonoBehaviour
     [SerializeField] internal TMPro.TextMeshProUGUI timeRequiredTMP;
     internal TimeManager timerManager;
 
-    [SerializeField] internal GameObject gameOverGO;
+    //[SerializeField] internal GameObject gameOverGO;
 
     [SerializeField] internal Animator LevelTransition;
     #endregion
@@ -46,6 +48,9 @@ public class StateMachine : MonoBehaviour
     #endregion
 
     [Header("Collision Handling")]
+    [SerializeField] float requiredCollisionTime = 2f; // Time the player must stay collided to change the state
+    private bool isCollidingWithFinish = false;
+    private float collisionTimer = 0f;
     internal bool canChangeState = true;
 
     //current level gem count
@@ -61,10 +66,9 @@ public class StateMachine : MonoBehaviour
         timerManager = FindObjectOfType<TimeManager>();
         if (timerManager == null) { Debug.LogWarning("time manager is null"); }
 
-        if (levelFinishGO != null && gameOverGO != null)
+        if (levelFinishGO != null )
         {
             levelFinishGO.SetActive(false);
-            gameOverGO.SetActive(false);
         }
         else { Debug.LogWarning("level finish or game Over GameObj is not assigned"); }
 
@@ -107,29 +111,70 @@ public class StateMachine : MonoBehaviour
                 break;
         }
     }
+
     private void OnCollisionEnter(Collision collision)
     {
-        if (!canChangeState){return;}
+        if (!canChangeState) { return; }
 
         if (collision.collider.CompareTag("Finish"))
         {
-            if (checkVelocity)
-            {
-                currentState = SafeToLand()? State.OnFinished : State.OnDead;
-                Debug.Log(this.GetComponent<Rigidbody>().velocity.x + "X" + this.GetComponent<Rigidbody>().velocity.y + "Y");
-            }
-            else
-            {
-                currentState = State.OnFinished;
-            }
-            canChangeState = false;
+            isCollidingWithFinish = true;
+            collisionTimer = 0f; // Reset the timer when collision starts
         }
-        else if (!collision.collider.CompareTag("Start")&&!collision.collider.CompareTag("Finish"))
+        else if (!collision.collider.CompareTag("Start") && !collision.collider.CompareTag("Finish"))
         {
             currentState = State.OnDead;
             canChangeState = false;
         }
     }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        flying.rotationSpeed = 0f;
+        if (!canChangeState || !isCollidingWithFinish) { return; }
+
+        if (collision.collider.CompareTag("Finish"))
+        {
+            collisionTimer += Time.deltaTime; // Increment the timer based on time elapsed
+
+            if (collisionTimer >= requiredCollisionTime)
+            {
+                // Change state and reset collision-related variables
+                if (checkVelocity)
+                {
+                    currentState = SafeToLand() ? State.OnFinished : State.OnDead;
+                    Debug.Log(this.GetComponent<Rigidbody>().velocity.x + "X" + this.GetComponent<Rigidbody>().velocity.y + "Y");
+                }
+                else
+                {
+                    currentState = State.OnFinished;
+                }
+
+                canChangeState = false;
+                isCollidingWithFinish = false; // Reset collision state
+            }
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        flying.rotationSpeed = 100f;
+        if (collision.collider.CompareTag("Finish"))
+        {
+            isCollidingWithFinish = false;
+            collisionTimer = 0f; // Reset the timer when collision ends
+        }
+    }
+
+
+    // Coroutine to handle delayed state change
+    private IEnumerator ChangeStateWithDelay(State newState)
+    {
+        yield return new WaitForSeconds(2f); // Adjust the delay time as needed
+        currentState = newState;
+        canChangeState = false;
+    }
+
     internal void ChangeState(State newState)
     {
         currentState = newState; 
@@ -172,6 +217,14 @@ public class StateMachine : MonoBehaviour
         if (other.gameObject.GetComponent<GemBehaviour>())
         {
             gemCount++;
+            if (AudioManager.Instance != null)
+            {
+                if (!AudioManager.Instance.sfxSource.isPlaying)//audio
+                {
+                    AudioManager.Instance.PlaySFX(AudioManager.Instance.gemAudioClip);
+                }
+            }
+            Instantiate(GemCollectionParticle,transform.position,Quaternion.identity);
             Destroy(other.gameObject);
         }
     }

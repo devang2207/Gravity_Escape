@@ -4,7 +4,7 @@ public class Flying
 {
     StateMachine SM_Ref;
     Rigidbody PlayerRb;
-    [SerializeField] float rotationSpeed = 100;
+    [SerializeField] public float rotationSpeed = 100;
     [SerializeField] float fallMultiplier = 5;
     private bool isGrounded;
     public void StartState(StateMachine state)

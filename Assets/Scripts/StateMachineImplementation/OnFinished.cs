@@ -21,7 +21,7 @@ public class OnFinished
         if (Done) { yield break; }
         Done = true;
 
-        PlayerRb.isKinematic = true;
+        //PlayerRb.isKinematic = true;
         SM_Ref.midParticleSys.Stop();                           //stopping particle systems
         SM_Ref.rightParticleSys.Stop();
         SM_Ref.leftParticleSys.Stop();
@@ -37,10 +37,14 @@ public class OnFinished
         }
 
         //play finished animation and audio
-        if (!finishedAudio.isPlaying)//audio
+        if(AudioManager.Instance != null)
         {
-            finishedAudio.Play();
+            if (!AudioManager.Instance.sfxSource.isPlaying)//audio
+            {
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.levelFinishedClip);
+            }
         }
+
         SM_Ref.Create(FinishedParticleEffect,SM_Ref.transform); //particle sys 
 
 

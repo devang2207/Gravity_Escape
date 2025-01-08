@@ -6,13 +6,11 @@ using UnityEngine.UI;
 public class LevelUI : MonoBehaviour
 {
     [SerializeField] GameObject PauseStuff;
-    bool isPaused = false;
 
     [Header("Buttons")]
     [SerializeField] Button pauseButton;
     [SerializeField] Button resumeButton;
     [SerializeField] Button menuButton;
-    [SerializeField] Button menuButton2;
     [SerializeField] Button retryButton;
     [SerializeField] Button retryButton2;
     [SerializeField] Button nextLevelButton;
@@ -30,26 +28,14 @@ public class LevelUI : MonoBehaviour
         pauseButton.onClick.AddListener(Pause);
         resumeButton.onClick.AddListener(Resume);
         menuButton.onClick.AddListener(Home);
-        menuButton2.onClick.AddListener(Home);
 
         retryButton.onClick.AddListener(RetryLevel);
-        retryButton2.onClick.AddListener(RetryLevel);
         nextLevelButton.onClick.AddListener(LevelChange);
     }
     public void Pause()
     {
-        if (isPaused)
-        {
-            Time.timeScale = 1f;
-            PauseStuff.SetActive(false);
-        }
-        else if(!isPaused)
-        {
-            Time.timeScale = 0f;
-            PauseStuff.SetActive(true);
-        }
-
-        isPaused = !isPaused;
+        Time.timeScale = 0f;
+        PauseStuff.SetActive(true);
     }
 
     public void Resume()
@@ -62,9 +48,22 @@ public class LevelUI : MonoBehaviour
         Time.timeScale = 1;
         SceneManager.LoadScene("Main_Menu");
     }
+    public void QuitGame()
+    {
+        Application.Quit();
+        Debug.Log("Quit");
+    }
     public void RetryLevel()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    public void PlayClickSound()
+    {
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayButtonSFX();
+        }
     }
     internal void LevelChange()
     {
