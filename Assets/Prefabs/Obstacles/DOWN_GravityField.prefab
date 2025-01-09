@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4.5, y: 9, z: 3}
+  m_LocalScale: {x: 4.9455, y: 11.076931, z: 3.297}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5004466477869559305}
@@ -120,7 +120,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upGravityPull: 0
-  force: 6
+  targetVelocity: 7.5
+  lerpSpeed: 1
 --- !u!1 &6629926000475167537
 GameObject:
   m_ObjectHideFlags: 0

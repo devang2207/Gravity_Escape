@@ -16495,7 +16495,7 @@ MonoBehaviour:
   - {fileID: 32035528}
   - {fileID: 905166824}
   - {fileID: 1542573947}
-  unlockAllLevels: 1
+  unlockAllLevels: 0
 --- !u!114 &1827457410
 MonoBehaviour:
   m_ObjectHideFlags: 0

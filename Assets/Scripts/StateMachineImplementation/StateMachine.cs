@@ -83,7 +83,7 @@ public class StateMachine : MonoBehaviour
     }
     void Update()
     {
-        //Debug.Log(gemCount);
+        Debug.Log(gemCount);
         SafeToLand();
         fuelCalculator.UpdateState();
         switch (currentState)
@@ -213,16 +213,22 @@ public class StateMachine : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        //gems collected in level
         if (other.gameObject.GetComponent<GemBehaviour>())
         {
-            gemCount++;
+            Collider gemCollider = other.gameObject.GetComponent<Collider>();
+            if (gemCollider != null)
+            {
+                gemCollider.enabled = false; // Disable collider to prevent duplicate triggers
+            }
+
+            Destroy(other.gameObject);
             if (AudioManager.Instance != null)
             {
                 AudioManager.Instance.PlaySFX(AudioManager.Instance.gemAudioClip);
             }
-            Instantiate(GemCollectionParticle,transform.position,Quaternion.identity);
-            Destroy(other.gameObject);
+            Instantiate(GemCollectionParticle, transform.position, Quaternion.identity);
+            gemCount++;
         }
     }
+
 }
