@@ -217,6 +217,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1985912325}
     m_Modifications:
+    - target: {fileID: 1084096216159230939, guid: 7b21a20f46d6f514b8ef9c672780c964, type: 3}
+      propertyPath: targetVelocity
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 6086080935058340939, guid: 7b21a20f46d6f514b8ef9c672780c964, type: 3}
       propertyPath: m_Name
       value: DOWN_GravityField

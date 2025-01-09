@@ -5,7 +5,9 @@ using UnityEngine;
 public class RocketAudioBehaviour : MonoBehaviour
 {
     private AudioSource thrustAudioSource; 
-    private AudioSource rotationAudioSource; 
+    private AudioSource rotationAudioSource;
+
+    [SerializeField] StateMachine SM_Ref;
 
     private void Start()
     {
@@ -27,12 +29,14 @@ public class RocketAudioBehaviour : MonoBehaviour
 
     private void Update()
     {
-        if (thrustAudioSource != null && rotationAudioSource != null)
-        {
-            HandleThrustAudio();
-            HandleRotationAudio();
-        }
-        else { Debug.LogWarning("thrust audio or rotation audio source are missing"); }
+        if (thrustAudioSource == null || rotationAudioSource == null)
+        {Debug.LogWarning("thrust audio or rotation audio source are missing");return;}
+        if(SM_Ref.currentState == StateMachine.State.OnDead || SM_Ref.currentState == StateMachine.State.OnFinished)
+        { Debug.Log("Player is dead ");thrustAudioSource.Stop();rotationAudioSource.Stop();  return; }
+        HandleThrustAudio();
+        if (SM_Ref.currentState == StateMachine.State.OnGround)
+        { Debug.Log("Player is on ground"); return; }
+        HandleRotationAudio();
     }
 
     private void HandleThrustAudio()

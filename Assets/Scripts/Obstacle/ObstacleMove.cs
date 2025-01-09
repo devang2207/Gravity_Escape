@@ -9,6 +9,10 @@ public class ObstacleMove : MonoBehaviour
 
     private void Awake()
     {
+        
+    }
+    private void Start()
+    {
         StartLocation = transform.position; // Store the initial position
     }
 
@@ -18,7 +22,7 @@ public class ObstacleMove : MonoBehaviour
 
         // Calculate the sine wave based movement
         float cycles = Time.time % period / period; // Restart the wave each period
-        const float tau = Mathf.PI * 2; // Full circle (2?)
+        const float tau = Mathf.PI * 2; // Full circle (2 * pi)
         float rawSinWave = Mathf.Sin(cycles * tau); // Generate sine wave (-1 to +1)
 
         movementFactor = (rawSinWave + 1f) / 2f; // Normalize to 0 to 1
@@ -26,9 +30,4 @@ public class ObstacleMove : MonoBehaviour
         transform.position = StartLocation + Offset; // Apply the movement
     }
 
-    private void OnEnable()
-    {
-        // Reset position when the object is enabled (scene reload or reactivation)
-        transform.position = StartLocation;
-    }
 }

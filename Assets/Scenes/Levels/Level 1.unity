@@ -245,55 +245,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3705574510207132391, guid: efcf27d07c556e048b8dd22b60aa0913, type: 3}
   m_PrefabInstance: {fileID: 4344987553844611433}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &512058905
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 512058907}
-  - component: {fileID: 512058906}
-  m_Layer: 0
-  m_Name: InputHandler
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &512058906
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 512058905}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d81f2fbb673f0fa41aee68e1a3ae3196, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerController: {fileID: -944628639613478452, guid: a53811dc7a8ea5b4e8b1c678fcde5430, type: 3}
-  actionMapName: RocketMove
-  leftMove: LeftMove
-  rightMove: RightMove
-  thrustValue: Thrust
---- !u!4 &512058907
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 512058905}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.318603, y: -0.19644976, z: -8.654374}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1846806963}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &716757497
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -998,38 +949,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f88483958e7730a4895d49fceaa46623, type: 3}
---- !u!1 &1846806962
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1846806963}
-  m_Layer: 0
-  m_Name: Managers
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1846806963
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1846806962}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.4245007, y: 6.3971477, z: -3.8191597}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 512058907}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1859396696
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1398,5 +1317,4 @@ SceneRoots:
   - {fileID: 1258410991}
   - {fileID: 1472531487}
   - {fileID: 119030471}
-  - {fileID: 1846806963}
   - {fileID: 1995367250}
