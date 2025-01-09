@@ -86,4 +86,11 @@ public class LevelUI : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
+    public void PlayTransitionSFX()
+    {
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.transitionClip);
+        }
+    }
 }

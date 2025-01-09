@@ -219,10 +219,7 @@ public class StateMachine : MonoBehaviour
             gemCount++;
             if (AudioManager.Instance != null)
             {
-                if (!AudioManager.Instance.sfxSource.isPlaying)//audio
-                {
-                    AudioManager.Instance.PlaySFX(AudioManager.Instance.gemAudioClip);
-                }
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.gemAudioClip);
             }
             Instantiate(GemCollectionParticle,transform.position,Quaternion.identity);
             Destroy(other.gameObject);

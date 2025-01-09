@@ -2,30 +2,33 @@ using UnityEngine;
 
 public class ObstacleMove : MonoBehaviour
 {
-    Vector3 StartLocation;
-    [SerializeField] Vector3 movementVector;
-    [SerializeField] [Range(0,1)]float movementFactor;
-    [SerializeField] float period;
-    
+    Vector3 StartLocation; // Starting position of the obstacle
+    [SerializeField] Vector3 movementVector; // Direction and distance of movement
+    [SerializeField][Range(0, 1)] float movementFactor; // Current movement progress
+    [SerializeField] float period = 2f; // Time for a complete cycle
+
     private void Awake()
     {
-        StartLocation = transform.position;
+        StartLocation = transform.position; // Store the initial position
     }
+
     private void Update()
     {
-        //SUS CODE SUS CODE 
-        if(period <= Mathf.Epsilon) { return; }//to remove Nan error(Not a number)
+        if (period <= Mathf.Epsilon) { return; } // Avoid divide by zero errors
 
+        // Calculate the sine wave based movement
+        float cycles = Time.time % period / period; // Restart the wave each period
+        const float tau = Mathf.PI * 2; // Full circle (2?)
+        float rawSinWave = Mathf.Sin(cycles * tau); // Generate sine wave (-1 to +1)
 
-        float cycles = Time.time / period;
+        movementFactor = (rawSinWave + 1f) / 2f; // Normalize to 0 to 1
+        Vector3 Offset = movementVector * movementFactor; // Calculate movement
+        transform.position = StartLocation + Offset; // Apply the movement
+    }
 
-        const float tau = Mathf.PI * 2;
-        float rawSinWave = Mathf.Sin(cycles * tau);
-
-        movementFactor = (rawSinWave + 1f) / 2f;
-        //SUS CODE SUS CODE 
-
-        Vector3 Offset = movementVector * movementFactor;
-        transform.position = StartLocation + Offset;
+    private void OnEnable()
+    {
+        // Reset position when the object is enabled (scene reload or reactivation)
+        transform.position = StartLocation;
     }
 }

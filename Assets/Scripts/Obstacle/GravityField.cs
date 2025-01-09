@@ -4,22 +4,28 @@ using UnityEngine;
 
 public class GravityField : MonoBehaviour
 {
-    [SerializeField]bool upGravityPull = true;
-    [SerializeField] float force = 10;
+    [SerializeField] bool upGravityPull = true;
+    [SerializeField] float targetVelocity = 5f; // Target Y velocity
+    [SerializeField] float lerpSpeed = 1f; // Speed of lerping
+
     private void OnTriggerStay(Collider other)
     {
-        //check if the player is there not other random object
+        // Check if the player is present (by verifying the presence of StateMachine)
         if (other.gameObject.GetComponent<StateMachine>())
         {
             Rigidbody playerRB = other.gameObject.GetComponent<Rigidbody>();
-            if (upGravityPull)
-            {
-                playerRB.AddForce(Vector3.up * force);
-            }
-            else if (!upGravityPull)
-            {
-                playerRB.AddForce(Vector3.up * -force);
-            }
+
+            // Get the current velocity
+            Vector3 currentVelocity = playerRB.velocity;
+
+            // Set the target Y velocity based on the gravity direction
+            float desiredYVelocity = upGravityPull ? targetVelocity : -targetVelocity;
+
+            // Smoothly lerp the Y velocity to the desired value
+            float newYVelocity = Mathf.Lerp(currentVelocity.y, desiredYVelocity, lerpSpeed * Time.deltaTime);
+
+            // Update the Rigidbody velocity
+            playerRB.velocity = new Vector3(currentVelocity.x, newYVelocity, currentVelocity.z);
         }
     }
 }

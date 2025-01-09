@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 1de309271d587ca41b4f6a47f909105a, type: 2}
   m_LightingSettings: {fileID: 4890085278179872738, guid: 7f8d977f08be92645b9c4570b9d3e3dd, type: 2}
 --- !u!196 &4
 NavMeshSettings:
@@ -262,6 +262,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4743658214667164699, guid: ba50b11c0d6160f478526b791efa647b, type: 3}
   m_PrefabInstance: {fileID: 440381539}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &555615418 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4156912557149720444, guid: d53f1509ac06e1441b2abe882865648d, type: 3}
+  m_PrefabInstance: {fileID: 1843258653}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &803088634
 PrefabInstance:
@@ -1176,19 +1181,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2175806480210919752, guid: d53f1509ac06e1441b2abe882865648d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.56
+      value: 1.881
       objectReference: {fileID: 0}
+    - target: {fileID: 3267447807524910154, guid: d53f1509ac06e1441b2abe882865648d, type: 3}
+      propertyPath: pointA
+      value: 
+      objectReference: {fileID: 1938279723}
+    - target: {fileID: 3267447807524910154, guid: d53f1509ac06e1441b2abe882865648d, type: 3}
+      propertyPath: pointB
+      value: 
+      objectReference: {fileID: 555615418}
     - target: {fileID: 4048027923069844836, guid: d53f1509ac06e1441b2abe882865648d, type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4070701550841147987, guid: d53f1509ac06e1441b2abe882865648d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.41
+      value: 3.44
       objectReference: {fileID: 0}
     - target: {fileID: 4070701550841147987, guid: d53f1509ac06e1441b2abe882865648d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.56
+      value: 5.11
       objectReference: {fileID: 0}
     - target: {fileID: 4070701550841147987, guid: d53f1509ac06e1441b2abe882865648d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1303,6 +1316,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3705574510207132391, guid: efcf27d07c556e048b8dd22b60aa0913, type: 3}
   m_PrefabInstance: {fileID: 1024351640}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1938279723 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2175806480210919752, guid: d53f1509ac06e1441b2abe882865648d, type: 3}
+  m_PrefabInstance: {fileID: 1843258653}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1985912324
 GameObject:
   m_ObjectHideFlags: 0
@@ -1411,7 +1429,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2652928289908086761, guid: ff93069c63ead7a4c8d43b99e20f6438, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.25
+      value: 9.2
       objectReference: {fileID: 0}
     - target: {fileID: 3881213998565577773, guid: ff93069c63ead7a4c8d43b99e20f6438, type: 3}
       propertyPath: m_LocalPosition.x
