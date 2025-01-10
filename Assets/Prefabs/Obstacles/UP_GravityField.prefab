@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upGravityPull: 1
-  targetVelocity: 13
+  targetVelocity: 10
   lerpSpeed: 1
 --- !u!1 &7247533225217231894
 GameObject:
